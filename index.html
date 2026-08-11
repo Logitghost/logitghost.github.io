@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ridima Jain — ML Engineer</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Inline style: hides subtitle before first paint, cannot be cached or delayed -->
+  <style>.hero-subtitle { opacity: 0 !important; visibility: hidden !important; }</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- ─── HERO ────────────────────────────────────────── -->
+    <div class="hero-sec">
+        <h1>Ridima <span>Jain</span></h1>
+        <div class="hero-subtitle"><span class="typed-text"></span><span class="cursor">|</span></div>
+
+        <div class="scroll-indi">
+          <div class="arrow"></div>
+          <span>Scroll to Explore</span>
+        </div>
+    </div>
+
+    <!-- ─── ABOUT ───────────────────────────────────────── -->
+    <section id="about" class="about-sec">
+      <div class="about-card">
+
+        <div class="section-eyebrow">
+          <span class="sec-num">01; About</span>
+          <span class="sec-line"></span>
+        </div>
+        <h1 class="about-heading">About Me</h1>
+
+        <div class="about-body">
+          <div class="about-photo-wrap">
+            <img src="Profile_Photo.jpeg" alt="Ridima Jain" class="about-photo"
+                 onerror="this.style.display='none'; document.getElementById('avatar-fallback').style.display='flex';" />
+            <div class="avatar-fallback" id="avatar-fallback">RJ</div>
+          </div>
+
+          <div class="about-paras">
+            <p class="about-p">
+              I'm a first-year AIML student at DSCE, and most of what I know I picked up by breaking things first and reading theory after. I'd rather sit with a messy dataset for a week than finish a course.
+            </p>
+            <p class="about-p">
+              Right now that means going back and forth between Kaggle leaderboards and Karpathy's lectures — building a neural language model from scratch on one hand, and fighting missing values and class imbalance on real-world data on the other.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-bottom">
+          <h3>Currently Exploring</h3>
+          <ul class="custom-list">
+            <li>Working through Karpathy's Zero to Hero series — currently on the makemore MLP</li>
+            <li>Getting comfortable with imbalanced, messy data instead of clean course datasets</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="sec-divider"><hr></div>
+
+    <!-- ─── PROJECTS ────────────────────────────────────── -->
+    <section id="projects" class="project">
+
+      <div class="section-eyebrow">
+        <span class="sec-num">02 &mdash; Projects</span>
+        <span class="sec-line"></span>
+      </div>
+      <h1>Projects</h1>
+
+      <div class="project-card">
+        <div class="project-card-header">
+          <div>
+            <h2>Neural Probabilistic Language Model</h2>
+            <h5>makemore-style, from scratch &mdash; PyTorch</h5>
+          </div>
+          <span class="project-tag">PyTorch</span>
+        </div>
+        <p>
+          Started with a bigram baseline and worked up to a proper neural MLP based on the
+          Bengio 2003 paper, with learned character embeddings. Built the whole data pipeline
+          myself — 4-character context window, a 27×6 embedding space, 80/10/10 split — and
+          trained a 2-layer MLP (24→500→27) with tanh activations. Watching the loss actually
+          drop below the bigram baseline was the first time this stuff felt real instead of
+          theoretical.
+        </p>
+        <a href="https://github.com/Logitghost/nn-zero-to-hero/tree/main/makemore" target="_blank">View code →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-header">
+          <div>
+            <h2>Rain Prediction using SVM</h2>
+            <h5>Australia Weather Dataset &mdash; ~145K rows</h5>
+          </div>
+          <span class="project-tag">SVM</span>
+        </div>
+        <p>
+          Predicting next-day rainfall taught me more about missing data than about rain.
+          Clustered locations by climate with KMeans so I could impute within similar climate
+          groups instead of blindly filling the whole column, capped outliers with IQR, and
+          balanced classes with SMOTE before training an SVM with an RBF kernel. Landed at 83%
+          accuracy and a 0.65 F1-score — the imputation strategy mattered more than the model.
+        </p>
+        <a href="https://github.com/Logitghost/rain-prediction-svm" target="_blank">View code →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-header">
+          <div>
+            <h2>Telco Customer Churn Prediction</h2>
+            <h5>26-feature telecom dataset</h5>
+          </div>
+          <span class="project-tag">Classification</span>
+        </div>
+        <p>
+          Engineered features like charge-per-month ratio and tenure buckets, then benchmarked
+          four classifiers — Logistic Regression, Decision Tree, Random Forest, and Gradient
+          Boosting — under class-weighting to handle the churn imbalance. Random Forest came
+          out on top with a 0.66 F1-score. Contract type, tenure, and monthly charges turned
+          out to be the strongest churn signals across every model.
+        </p>
+        <a href="https://github.com/Logitghost/Telco-Customer-Churn-Prediction" target="_blank">View code →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-header">
+          <div>
+            <h2>Stellar Classification</h2>
+            <h5>Kaggle Playground Series</h5>
+          </div>
+          <span class="project-tag">Kaggle</span>
+        </div>
+        <p>
+          Multi-class classification to predict stellar object type, placing in the top 44% of
+          the competition. The feature engineering leaned on actual astronomy — color indices
+          and converting RA/Dec coordinates to Cartesian — rather than just throwing raw
+          columns at a model and hoping.
+        </p>
+        <a href="https://github.com/Logitghost/stellar-classification-kaggle" target="_blank">View code →</a>
+      </div>
+
+    </section>
+
+    <div class="sec-divider"><hr></div>
+
+    <!-- ─── SKILLS ───────────────────────────────────────── -->
+    <section id="skills" class="skills-sec">
+
+      <div class="section-eyebrow">
+        <span class="sec-num">03 &mdash; Skills</span>
+        <span class="sec-line"></span>
+      </div>
+      <h1>Skills</h1>
+
+      <div class="skills-grid">
+
+        <div class="skill-group">
+          <span class="skill-group-label">Languages</span>
+          <div class="skill-tags">
+            <span class="tag">Python</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <span class="skill-group-label">Libraries</span>
+          <div class="skill-tags">
+            <span class="tag">PyTorch</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Matplotlib</span>
+            <span class="tag">Seaborn</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <span class="skill-group-label">ML / DL</span>
+          <div class="skill-tags">
+            <span class="tag">Neural Networks</span>
+            <span class="tag">Feature Engineering & EDA</span>
+            <span class="tag">Model Evaluation & Cross-Validation</span>
+            <span class="tag">Imbalanced Data Handling</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <span class="skill-group-label">Tools</span>
+          <div class="skill-tags">
+            <span class="tag">Git</span>
+            <span class="tag">Kaggle</span>
+            <span class="tag">Jupyter</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <div class="sec-divider"><hr></div>
+
+    <!-- ─── CONTACT ──────────────────────────────────────── -->
+    <section id="contact" class="contact-sec">
+
+      <div class="section-eyebrow">
+        <span class="sec-num">04 &mdash; Contact</span>
+        <span class="sec-line"></span>
+      </div>
+      <h1>Contact</h1>
+      <p class="contact-sub">Open to internships, collaborations, and interesting problems.</p>
+
+      <div class="contact-grid">
+
+        <a href="https://github.com/Logitghost" target="_blank" class="contact-card">
+          <span class="contact-label">GitHub</span>
+          <span class="contact-value">RidimaJain018</span>
+          <span class="contact-arrow">→</span>
+        </a>
+
+        <a href="https://www.linkedin.com/in/ridima-jain2007/" target="_blank" class="contact-card">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value">ridima-jain2007</span>
+          <span class="contact-arrow">→</span>
+        </a>
+
+        <a href="mailto:ridimajain018@gmail.com" class="contact-card">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">ridimajain018@gmail.com</span>
+          <span class="contact-arrow" aria-hidden="true">→</span>
+        </a>
+
+        <a href="https://www.kaggle.com/ridima2007" target="_blank" class="contact-card">
+          <span class="contact-label">Kaggle</span>
+          <span class="contact-value">ridima2007</span>
+          <span class="contact-arrow">→</span>
+        </a>
+
+      </div>
+
+    </section>
+
+    <footer class="site-footer">
+      <span>© 2026 Ridima Jain</span>
+      <span class="footer-dot">·</span>
+    </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
